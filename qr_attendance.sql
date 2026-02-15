@@ -1,0 +1,20 @@
+CREATE TABLE IF NOT EXISTS qr_codes (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    token VARCHAR(255) UNIQUE NOT NULL,
+    student_id VARCHAR(50) NOT NULL,
+    is_used BOOLEAN DEFAULT FALSE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Table for attendance records
+CREATE TABLE IF NOT EXISTS attendance (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    student_id VARCHAR(50) NOT NULL,
+    qr_token VARCHAR(255) NOT NULL,
+    scanned_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Insert test QR code
+INSERT INTO qr_codes (token, student_id) VALUES ('tQyXvnpyN00Y2gY1LePDpWMuIPQiKZRV', 'STU001');
+
+ALTER TABLE attendance MODIFY qr_token VARCHAR(255) DEFAULT NULL;
